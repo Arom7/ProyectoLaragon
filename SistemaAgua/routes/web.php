@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* Ruta de verificacion de conexion de base de datos */
 Route::get('/verificar-conexion', function () {
     try {
         DB::connection()->getPdo();
@@ -30,13 +28,6 @@ Route::get('/verificar-conexion', function () {
     }
 });
 
-
-//Route:: resource('tasks', TaskController::class);
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
