@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('duenio_casa', function (Blueprint $table) {
+        Schema::create('duenio_casas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('primerApellido');
@@ -20,10 +20,10 @@ return new class extends Migration
             $table->integer('nroCasa')->nullable();
             $table->double('deudaTotal',7,2)->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('id_presidente');
+            //$table->unsignedBigInteger('id_presidente');
 
             //Llave foranea dependiente de presidente
-            $table->foreign('id_presidente')->references('id')->on('presidente');
+            //$table->foreign('id_presidente')->references('id')->on('presidente');
         });
     }
 

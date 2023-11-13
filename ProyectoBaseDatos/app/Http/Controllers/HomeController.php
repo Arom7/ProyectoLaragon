@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\DuenioCasa;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $duenios = DuenioCasa::latest()->paginate(5);
+        return view('index', ['duenios' => $duenios]);
     }
 }

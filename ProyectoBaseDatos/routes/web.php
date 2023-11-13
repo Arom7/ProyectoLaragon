@@ -30,14 +30,16 @@ Route::get('/verificar-conexion', function () {
     }
 });
 
-
-//Route:: resource('tasks', TaskController::class);
-
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('/crearDuenio', [App\Http\Controllers\DuenioCasaController::class, 'create'])->name('crear');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/registro', [App\Http\Controllers\DuenioCasaController::class, 'store'])->name('registrar');
+
+Route::get('/{id?}/editar', [App\Http\Controllers\DuenioCasaController::class, 'edit'])->name('vistaEditar');
+
+Route::put('/actualizar/{id?}', [App\Http\Controllers\DuenioCasaController::class, 'update'])->name('editar');
+
+
