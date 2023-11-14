@@ -26,48 +26,41 @@
 
 
 
-    <form action="{{route('editar',['request' => $duenioCasa ,'id' => $duenioCasa->id])}}" method="POST">
-        <!--
-        EL token csrf () es una medida de seguridad utilizada para proteger las aplicaciones web de ataques maliciosos. El token
-        es un valor unico y secreto que se genera para cada formulario en la aplicacion. La enviar un formulario, el token se envia
-        junto con los datos y Laravel verifica si coincide con el token almacenado en el servidor, si no coincide podria tratarse
-        de un intento de falsificacion de peticion en el sitio. Esto ayuda a garantizar que solo las solicitudes legitimas y autenticas
-        sean procesadas por la aplicacion.
-        -->
+    <form action="{{ route('editar',['id'=>$duenioCasa->id]) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                 <div class="form-group mt-3 mb-3">
                     <strong >Nombre del Dueño de Casa:</strong>
-                    <input type="text" class="form-control" name="nombre" placeholder="Registre su Nombre" value="{{$duenioCasa->nombre}}" >
+                    <input type="text" class="form-control" name="nombre" placeholder="Registre su Nombre" value="{{ old('nombre', $duenioCasa->nombre) }}" required>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                 <div class="form-group mt-3 mb-3">
                     <strong>Primer Apellido</strong>
-                    <input type="text" class="form-control" name="primerApellido" placeholder="Registre su Apellido Paterno" value="{{$duenioCasa->primerApellido}}"></textarea>
+                    <input type="text" class="form-control" name="primerApellido" placeholder="Registre su Apellido Paterno" value="{{ old('primerApellido', $duenioCasa->primerApellido) }}" required>
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                 <div class="form-group mt-3 mb-3">
                     <strong>Segundo Apellido</strong>
-                    <input type="text" class="form-control" name="segundoApellido" placeholder="Registre su Apellido Materno" value="{{$duenioCasa->segundoApellido}}"></textarea>
+                    <input type="text" class="form-control" name="segundoApellido" placeholder="Registre su Apellido Materno" value="{{ old('segundoApellido', $duenioCasa->segundoApellido) }}" >
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                 <div class="form-group mt-3 mb-3">
                     <strong>Direccion: </strong>
-                    <input type="text" class="form-control" name="direccionCasa" placeholder="Registre su Direccion" value="{{$duenioCasa->direccionCasa}}"></textarea>
+                    <input type="text" class="form-control" name="direccionCasa" placeholder="Registre su Direccion" value="{{ old('direccionCasa', $duenioCasa->direccionCasa) }}">
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
                 <div class="form-group">
                     <strong># Casa:</strong>
-                    <input type="integer" name="nroCasa" class="form-control" placeholder="Registre el numero" value="{{$duenioCasa->nroCasa}}">
+                    <input type="integer" name="nroCasa" class="form-control" placeholder="Registre el numero" value="{{ old('nroCasa',$duenioCasa->nroCasa)}}">
                 </div>
             </div>
 

@@ -15,7 +15,7 @@ class DuenioCasaController extends Controller
      */
     public function index():View
     {
-        $duenios = DuenioCasa::latest()->paginate(5);
+        $duenios = DuenioCasa::latest()->paginate(8);
         return view('index', ['duenios' => $duenios]);
     }
 
@@ -52,30 +52,33 @@ class DuenioCasaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DuenioCasa $duenioCasa): View
+    public function edit($id): View
     {
-
-        dd($duenioCasa);
-        //return view('editar', ['duenioCasa' => $duenioCasa]);
+        $duenioCasa = DuenioCasa::findOrFail($id);
+        return view('editarDuenio', compact('duenioCasa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,DuenioCasa $duenioCasa):RedirectResponse
+    public function update(Request $request,$id):RedirectResponse
     {
-        $request->validate([
-            'nombre' => 'required',
-            'primerApellido' => 'required',
-            'direccionCasa' => 'required'
-        ]);
 
         $duenioCasa = DuenioCasa::findOrFail($id);
-        $duenioCasa->nombre = $request->input('nombre');
-        $duenioCasa->primerApellido = $request->input('primerApellido');
-        $duenioCasa->segundoApellido = $request->input('segundoApellido');
-        $duenioCasa->direccionCasa = $request->input('direccionCasa');
-        $duenioCasa->nroCasa = $request->input('nroCasa');
+
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'primerApellido' => 'required|string|max:255',
+            'direccionCasa' => 'required|string|max:255'
+        ]);
+
+        $duenioCasa->update([
+            'nombre' => $request->input('nombre'),
+            'primerApellido' => $request->input('primerApellido'),
+            'segundoApellido' => $request->input('segundoApellido'),
+            'direccionCasa' => $request->input('direccionCasa'),
+            'nroCasa' => $request->input('nroCasa')
+        ]);
 
         return redirect()->route('home')->with('success', 'Datos del dueño de casa actualizado exitosamente.');
     }
@@ -83,8 +86,10 @@ class DuenioCasaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DuenioCasa $duenioCasa)
+    public function destroy($id)
     {
-        //
+        $duenioCasa = DuenioCasa::findOrFail($id);
+        $duenioCasa->delete();
+        return redirect()->route('home')->with('success', 'Dueño de casa eliminado.');
     }
 }

@@ -38,8 +38,10 @@ Route::get('/crearDuenio', [App\Http\Controllers\DuenioCasaController::class, 'c
 
 Route::post('/registro', [App\Http\Controllers\DuenioCasaController::class, 'store'])->name('registrar');
 
-Route::get('/{id?}/editar', [App\Http\Controllers\DuenioCasaController::class, 'edit'])->name('vistaEditar');
+Route::get('/editar/{id}', [App\Http\Controllers\DuenioCasaController::class, 'edit'])->name('vistaEditar');
 
-Route::put('/actualizar/{id?}', [App\Http\Controllers\DuenioCasaController::class, 'update'])->name('editar');
+Route::put('/actualizar/{id}', [App\Http\Controllers\DuenioCasaController::class, 'update'])->name('editar');
+
+Route::delete('/eliminar/{id}', [App\Http\Controllers\DuenioCasaController::class, 'destroy'])->name('destruir');
 
 

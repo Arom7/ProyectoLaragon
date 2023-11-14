@@ -50,9 +50,11 @@
                             <span class="badge bg-warning fs-6">Deudor</span>
                         </td>
                         <td>
-                            <a href="{{route('vistaEditar')}}" class="btn btn-warning">Editar</a>
+                            <a href="{{route('vistaEditar',['id'=>$duenio->id])}}" class="btn btn-warning">Editar</a>
 
-                            <form action="" method="post" class="d-inline">
+                            <form action="{{route('destruir',['id'=>$duenio->id])}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </td>
