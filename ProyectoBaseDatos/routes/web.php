@@ -44,4 +44,7 @@ Route::put('/actualizar/{id}', [App\Http\Controllers\DuenioCasaController::class
 
 Route::delete('/eliminar/{id}', [App\Http\Controllers\DuenioCasaController::class, 'destroy'])->name('destruir');
 
+Route::get('/crearRecibo', [App\Http\Controllers\ReciboController::class, 'create'])->name('crearRecibo');
+
+Route::post('/registroRecibo', [App\Http\Controllers\ReciboController::class, 'store'])->name('registrarRecibo');
 

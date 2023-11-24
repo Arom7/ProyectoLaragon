@@ -18,12 +18,8 @@ return new class extends Migration
             $table->string('segundoApellido')->nullable();
             $table->text('direccionCasa');
             $table->integer('nroCasa')->nullable();
-            $table->double('deudaTotal',7,2)->nullable();
+            $table->double('deudaTotal',7,2)->default(0.0);
             $table->timestamps();
-            //$table->unsignedBigInteger('id_presidente');
-
-            //Llave foranea dependiente de presidente
-            //$table->foreign('id_presidente')->references('id')->on('presidente');
         });
     }
 

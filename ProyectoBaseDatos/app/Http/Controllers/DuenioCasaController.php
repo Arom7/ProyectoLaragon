@@ -33,9 +33,12 @@ class DuenioCasaController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'nombre' => 'required',
-            'primerApellido' => 'required',
-            'direccionCasa' => 'required'
+            'nombre' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/',
+            'segundoApellido' => 'nullable|regex:/^[a-zA-Z]+$/',
+            'direccionCasa' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'nroCasa' => 'nullable|regex:/^[0-9]+$/'
+
         ]);
         DuenioCasa::create($request->all());
         return redirect()->route('home')->with('success', 'Nuevo dueño de casa registrado exitosamente.');
@@ -67,9 +70,11 @@ class DuenioCasaController extends Controller
         $duenioCasa = DuenioCasa::findOrFail($id);
 
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'primerApellido' => 'required|string|max:255',
-            'direccionCasa' => 'required|string|max:255'
+            'nombre' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'primerApellido' => 'required|regex:/^[a-zA-Z]+$/',
+            'segundoApellido' => 'nullable|regex:/^[a-zA-Z]+$/',
+            'direccionCasa' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'nroCasa' => 'nullable|regex:/^[0-9]+$/'
         ]);
 
         $duenioCasa->update([
